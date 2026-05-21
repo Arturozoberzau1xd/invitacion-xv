@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
+import { FaAmazon, FaGift } from "react-icons/fa";
+import { GiShoppingCart } from "react-icons/gi";
 
 const CONFIG = {
-  nombrePrincipal: "XV Años de ",
+  nombrePrincipal: "XV Años de Valeria", 
   subtitulo: "Una celebración inolvidable",
 
   fechaEvento: {
@@ -24,7 +26,8 @@ const CONFIG = {
   vestimentaDetalle: "Caballeros: traje · Damas: vestido largo",
 
   mesaLiverpool: "52001538",
-  mesaAmazon: "Pendiente por agregar",
+  mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
+  mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
 
   googleMapsUrl: "https://maps.google.com/",
   whatsappNumero: "527712168812",
@@ -106,24 +109,24 @@ function App() {
   }, []);
 
   const abrirInvitacion = async () => {
-  if (animacionApertura) return;
+    if (animacionApertura) return;
 
-  setAnimacionApertura(true);
+    setAnimacionApertura(true);
 
-  try {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.45;
-      await audioRef.current.play();
-      setMusicaActiva(true);
+    try {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.45;
+        await audioRef.current.play();
+        setMusicaActiva(true);
+      }
+    } catch {
+      setMusicaActiva(false);
     }
-  } catch {
-    setMusicaActiva(false);
-  }
 
-  setTimeout(() => {
-    setAbierta(true);
-  }, 1500);
-};
+    setTimeout(() => {
+      setAbierta(true);
+    }, 1500);
+  };
 
   const toggleMusica = async () => {
     if (!audioRef.current) return;
@@ -155,45 +158,45 @@ function App() {
 
       {!abierta ? (
         <section className={`cover ${animacionApertura ? "cover-opening" : ""}`}>
-  <div className="sparkles"></div>
+          <div className="sparkles"></div>
 
-  <div className={`cover-card ${animacionApertura ? "card-opening" : ""}`}>
-    <PetalExplosion active={animacionApertura} />
+          <div className={`cover-card ${animacionApertura ? "card-opening" : ""}`}>
+            <PetalExplosion active={animacionApertura} />
 
-    <p className="eyebrow">Estás cordialmente invitado</p>
+            <p className="eyebrow">Estás cordialmente invitado</p>
 
-    <RoseSeal />
+            <RoseSeal />
 
-    <h1>{CONFIG.nombrePrincipal}</h1>
-    <p className="subtitle">{CONFIG.subtitulo}</p>
+            <h1>{CONFIG.nombrePrincipal}</h1>
+            <p className="subtitle">{CONFIG.subtitulo}</p>
 
-    <div className="line"></div>
+            <div className="line"></div>
 
-    <p className="small-text">
-      Champagne · Dorado · Plateado · Rosas
-    </p>
+            <p className="small-text">
+              Champagne · Dorado · Plateado · Rosas
+            </p>
 
-    <button
-      className="main-button open-button"
-      onClick={abrirInvitacion}
-      disabled={animacionApertura}
-    >
-      {animacionApertura ? "Abriendo..." : "Abrir invitación"}
-    </button>
-  </div>
-</section>
+            <button
+              className="main-button open-button"
+              onClick={abrirInvitacion}
+              disabled={animacionApertura}
+            >
+              {animacionApertura ? "Abriendo..." : "Abrir invitación"}
+            </button>
+          </div>
+        </section>
       ) : (
         <section className="invitation">
-          <header className="hero">
-            <div className="hero-content">
-              <p className="eyebrow">Nos complace invitarte</p>
-              <h1>{CONFIG.nombrePrincipal}</h1>
-              <p className="subtitle">
-                Con gran alegría queremos compartir contigo este momento tan
-                especial.
-              </p>
-            </div>
-          </header>
+  <header className="hero">
+    <div className="hero-content">
+      {/* Le cambiamos la clase aquí: */}
+      <p className="hero-eyebrow">Nos complace invitarte</p>
+      <h1>{CONFIG.nombrePrincipal}</h1>
+      <p className="subtitle">
+        Con gran alegría queremos compartir contigo este momento tan especial.
+      </p>
+    </div>
+  </header>
 
           <Reveal>
             <section className="section countdown-section">
@@ -236,15 +239,33 @@ function App() {
               />
 
               <InfoCard
-                title="Código de vestimenta"
-                main={CONFIG.codigoVestimenta}
-                text={CONFIG.vestimentaDetalle}
+                title="Mesa de regalos"
+                items={[
+                  {
+                    label: "Liverpool",
+                    value: CONFIG.mesaLiverpool,
+                    icon: <FaGift style={{ color: "#e6007e" }} />,
+                    isLink: false,
+                  },
+                  {
+                    label: "Amazon",
+                    value: CONFIG.mesaAmazon,
+                    icon: <FaAmazon style={{ color: "#ff9900" }} />,
+                    isLink: true,
+                  },
+                  {
+                    label: "Palacio de Hierro",
+                    value: CONFIG.mesaHierro,
+                    icon: <GiShoppingCart style={{ color: "#000000" }} />,
+                    isLink: true,
+                  },
+                ]}
               />
 
               <InfoCard
-                title="Mesa de regalos"
-                main={`Liverpool: ${CONFIG.mesaLiverpool}`}
-                text={`Amazon: ${CONFIG.mesaAmazon}`}
+                title="Código de vestimenta"
+                main={CONFIG.codigoVestimenta}
+                text={CONFIG.vestimentaDetalle}
               />
             </section>
           </Reveal>
@@ -352,13 +373,79 @@ function TimeBox({ value, label }) {
   );
 }
 
-function InfoCard({ title, main, text }) {
+function InfoCard({ title, main, text, items }) {
   return (
-    <article className="info-card">
+    <article className="info-card" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="flower-corner"></div>
-      <p>{title}</p>
-      <h3>{main}</h3>
-      <span>{text}</span>
+      <p className="card-title-label" style={{ textAlign: "center" }}>{title}</p>
+      
+      {main && <h3 style={{ textAlign: "center" }}>{main}</h3>}
+      {text && <span style={{ textAlign: "center" }}>{text}</span>}
+
+      {items && (
+        <ul className="gift-list" style={{ 
+          listStyle: "none", 
+          padding: 0, 
+          marginTop: "20px", 
+          width: "100%", 
+          maxWidth: "300px", 
+          margin: "20px auto 0 auto" 
+        }}>
+          {items.map((item, i) => (
+            <li key={i} style={{ 
+              display: "grid", 
+              gridTemplateColumns: "55px 1fr", 
+              alignItems: "center",
+              gap: "10px", 
+              marginBottom: "16px",
+              backgroundColor: "rgba(244, 241, 234, 0.6)", 
+              padding: "12px 14px",
+              borderRadius: "12px",
+              border: "1px solid rgba(212, 175, 55, 0.2)",
+            }}>
+              {/* Icono perfectamente alineado */}
+              <span style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center",
+                fontSize: "2.2rem", 
+              }}>
+                {item.icon}
+              </span>
+              
+              {/* Texto alineado de forma vertical e idéntica en las 3 cajas */}
+              <div style={{ 
+                fontSize: "1rem", 
+                display: "flex", 
+                flexDirection: "column", 
+                alignItems: "flex-start", 
+                gap: "2px",
+                textAlign: "left" 
+              }}>
+                <span style={{ fontWeight: "600", color: "#333", lineHeight: "1" }}>{item.label}</span>
+                {item.isLink ? (
+                  <a 
+                    href={item.value} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ 
+                      color: "#9b722f", 
+                      textDecoration: "underline", 
+                      fontWeight: "bold",
+                      fontSize: "0.85rem" ,
+                      marginLeft: "62px"   
+                    }}
+                  >
+                    Ir a la mesa
+                  </a>
+                ) : (
+                  <span style={{ color: "#666", fontSize: "0.9rem" }}>No. {item.value}</span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </article>
   );
 }
@@ -404,6 +491,7 @@ function Reveal({ children }) {
     </div>
   );
 }
+
 function RoseSeal() {
   return (
     <div className="rose-seal" aria-hidden="true">
@@ -469,4 +557,5 @@ function PetalExplosion({ active }) {
     </div>
   );
 }
+
 export default App;
