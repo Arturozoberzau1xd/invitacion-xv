@@ -4,18 +4,18 @@ import { FaAmazon, FaGift } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 
 const CONFIG = {
-  nombrePrincipal: "XV Años de Valeria", 
+  nombrePrincipal: "XV Años de Zury Urbina Benitez ", 
   subtitulo: "Una celebración inolvidable",
 
   fechaEvento: {
     year: 2026,
     month: 7,
     day: 3,
-    hour: 16,
-    minute: 30,
+    hour: 4,      
+    minute: 0,    
   },
 
-  ceremoniaHora: "16:30 hrs",
+  ceremoniaHora: "16:00 hrs",
   ceremoniaLugar: "Misa en la capilla del jardín del salón",
 
   recepcionHora: "6:00 PM a 1:00 AM",
@@ -29,7 +29,7 @@ const CONFIG = {
   mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
   mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
 
-  googleMapsUrl: "https://maps.google.com/",
+  googleMapsUrl: "https://maps.app.goo.gl/dZLQFZMEBWcAn8mK7?g_st=ac",
   whatsappNumero: "527712168812",
 
   mensajeWhatsApp:
@@ -173,7 +173,7 @@ function App() {
             <div className="line"></div>
 
             <p className="small-text">
-              Champagne · Dorado · Plateado · Rosas
+              Zury Urbina Benitez
             </p>
 
             <button
@@ -187,21 +187,32 @@ function App() {
         </section>
       ) : (
         <section className="invitation">
-  <header className="hero">
-    <div className="hero-content">
-      {/* Le cambiamos la clase aquí: */}
-      <p className="hero-eyebrow">Nos complace invitarte</p>
-      <h1>{CONFIG.nombrePrincipal}</h1>
-      <p className="subtitle">
-        Con gran alegría queremos compartir contigo este momento tan especial.
-      </p>
-    </div>
-  </header>
+          <header className="hero">
+            <div className="hero-content">
+              <p className="hero-eyebrow">Nos complace invitarte</p>
+              <h1>{CONFIG.nombrePrincipal}</h1>
+              <p className="subtitle">
+                Con gran alegría queremos compartir contigo este momento tan especial.
+              </p>
+            </div>
+          </header>
 
           <Reveal>
             <section className="section countdown-section">
               <p className="section-label">Faltan</p>
               <h2>Cuenta regresiva</h2>
+              
+              {/* CORRECCIÓN DE COLOR AQUÍ: Cambiado a un tono café/oscuro elegante (#2c1f0b) */}
+              <p className="event-date-display" style={{ 
+                fontFamily: "'Cormorant Garamond', serif", 
+                fontSize: "1.6rem", 
+                color: "#2c1f0b", 
+                margin: "-5px 0 25px 0",
+                letterSpacing: "1px",
+                fontWeight: "600"
+              }}>
+                Viernes, 03 de Julio de 2026
+              </p>
 
               <div className="countdown">
                 <TimeBox value={timeLeft.dias} label="Días" />
@@ -321,7 +332,7 @@ function App() {
               <h2>Te esperamos</h2>
               <p>
                 Acompáñanos en este día tan especial. Puedes abrir la ubicación
-                directamente en Google Maps.
+                direcciónmente en Google Maps.
               </p>
 
               <a
@@ -403,7 +414,6 @@ function InfoCard({ title, main, text, items }) {
               borderRadius: "12px",
               border: "1px solid rgba(212, 175, 55, 0.2)",
             }}>
-              {/* Icono perfectamente alineado */}
               <span style={{ 
                 display: "flex", 
                 alignItems: "center", 
@@ -413,7 +423,6 @@ function InfoCard({ title, main, text, items }) {
                 {item.icon}
               </span>
               
-              {/* Texto alineado de forma vertical e idéntica en las 3 cajas */}
               <div style={{ 
                 fontSize: "1rem", 
                 display: "flex", 
@@ -462,6 +471,7 @@ function FloatingPetals() {
   );
 }
 
+// ... El resto de componentes (Reveal, RoseSeal, PetalExplosion) se mantienen igual
 function Reveal({ children }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
