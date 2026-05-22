@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import { FaAmazon, FaGift } from "react-icons/fa";
-import { GiShoppingCart } from "react-icons/gi";
 
 const CONFIG = {
   nombrePrincipal: "XV Años de Zury Urbina Benitez ", 
@@ -19,7 +18,7 @@ const CONFIG = {
   ceremoniaLugar: "Misa en la capilla del jardín del salón",
 
   recepcionHora: "6:00 PM a 1:00 AM",
-  recepcionLugar: "Salón / Jardín del evento",
+  recepcionLugar: '"Salon Veravia" en Pachuca de Soto',
 
   coloresReservados: "Champagne, plateado y dorado",
   codigoVestimenta: "Formal",
@@ -33,7 +32,7 @@ const CONFIG = {
   whatsappNumero: "527712168812",
 
   mensajeWhatsApp:
-    "Hola, por este medio confirmo mi asistencia al evento.\n\nNombre:\nNúmero de personas:\nGracias.",
+    "Hola, por este medio confirmo mi asistencia al evento.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
 
   musica: "/musica.mp3",
 
@@ -189,7 +188,7 @@ function App() {
         <section className="invitation">
           <header className="hero">
             <div className="hero-content">
-              <p className="hero-eyebrow">Nos complace invitarte</p>
+              <p className="hero-eyebrow">Nos complace invitarte a celebrar los</p>
               <h1>{CONFIG.nombrePrincipal}</h1>
               <p className="subtitle">
                 Con gran alegría queremos compartir contigo este momento tan especial.
@@ -202,7 +201,6 @@ function App() {
               <p className="section-label">Faltan</p>
               <h2>Cuenta regresiva</h2>
               
-              {/* CORRECCIÓN DE COLOR AQUÍ: Cambiado a un tono café/oscuro elegante (#2c1f0b) */}
               <p className="event-date-display" style={{ 
                 fontFamily: "'Cormorant Garamond', serif", 
                 fontSize: "1.6rem", 
@@ -223,12 +221,20 @@ function App() {
             </section>
           </Reveal>
 
-          <Reveal>
+          <Reveal>  
             <section className="section message-section">
-              <p className="section-label">Con cariño</p>
-              <h2>Un momento especial</h2>
+              <h2 style={{ 
+                fontFamily: "'Brush Script MT', 'Great Vibes', 'Dancing Script', 'Lucida Handwriting', cursive", 
+                fontSize: "3.4rem",    // Se aumenta el tamaño porque la letra cursiva suele verse más delgada
+                fontWeight: "normal", 
+                textTransform: "none", // Evita que tu CSS global la transforme a mayúsculas
+                letterSpacing: "0",
+                lineHeight: "1.2"
+              }}>
+                Un momento especial
+              </h2>
               <p>
-                Hay momentos que se guardan para siempre en el corazón. Por eso,
+                Hay momentos que se guardan para siempre en el corazón; Por ello,
                 queremos compartir contigo esta celebración llena de amor,
                 alegría y elegancia.
               </p>
@@ -236,7 +242,8 @@ function App() {
           </Reveal>
 
           <Reveal>
-            <section className="section cards-grid">
+            {/* CORRECCIÓN: Padding inferior controlado para equilibrar el espacio antes de la siguiente sección */}
+            <section className="section cards-grid" style={{ paddingBottom: "40px" }}>
               <InfoCard
                 title="Ceremonia religiosa"
                 main={CONFIG.ceremoniaHora}
@@ -267,9 +274,9 @@ function App() {
                   {
                     label: "Palacio de Hierro",
                     value: CONFIG.mesaHierro,
-                    icon: <GiShoppingCart style={{ color: "#000000" }} />,
+                    icon: <img src="/public/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />,
                     isLink: true,
-                  },
+                  }
                 ]}
               />
 
@@ -277,12 +284,14 @@ function App() {
                 title="Código de vestimenta"
                 main={CONFIG.codigoVestimenta}
                 text={CONFIG.vestimentaDetalle}
+                image="/public/silueta.jpg"
               />
             </section>
           </Reveal>
 
           <Reveal>
-            <section className="section dress-section">
+            {/* CORRECCIÓN: Padding superior controlado para que respire simétricamente de forma externa */}
+            <section className="section dress-section" style={{ paddingTop: "40px" }}>
               <p className="section-label">Colores reservados</p>
               <h2>Paleta del evento</h2>
               <p>
@@ -351,7 +360,7 @@ function App() {
               <p className="section-label">Confirmación</p>
               <h2>Confirma tu asistencia</h2>
               <p>
-                Agradeceremos nos confirmes tu asistencia por WhatsApp para
+                Agradeceremos la confirmation de su asistencia por WhatsApp para
                 tener todo preparado con mucho cariño.
               </p>
 
@@ -367,7 +376,7 @@ function App() {
           </Reveal>
 
           <footer className="footer">
-            <p>Gracias por ser parte de este momento especial.</p>
+            <p>Gracias por ser parte de este momento tan especial.</p>
           </footer>
         </section>
       )}
@@ -384,23 +393,51 @@ function TimeBox({ value, label }) {
   );
 }
 
-function InfoCard({ title, main, text, items }) {
+function InfoCard({ title, main, text, items, image }) {
   return (
-    <article className="info-card" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className="flower-corner"></div>
-      <p className="card-title-label" style={{ textAlign: "center" }}>{title}</p>
-      
-      {main && <h3 style={{ textAlign: "center" }}>{main}</h3>}
-      {text && <span style={{ textAlign: "center" }}>{text}</span>}
+    <article 
+      className="info-card" 
+      style={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center",
+        padding: "24px 20px",
+        boxSizing: "border-box"
+      }}
+    >
+      <p className="card-title-label" style={{ textAlign: "center", margin: "0 0 8px 0" }}>{title}</p>
+
+      {main && <h3 style={{ textAlign: "center", margin: "0 0 6px 0", fontSize: "1.8rem" }}>{main}</h3>}
+      {text && <span style={{ textAlign: "center", display: "block", margin: "0 0 10px 0", fontSize: "0.95rem" }}>{text}</span>}
+
+      {image && (
+        <div style={{ 
+          width: "100%", 
+          display: "flex", 
+          justifyContent: "center", 
+          marginTop: "6px"
+        }}>
+          <img 
+            src={image} 
+            alt="Ejemplo vestimenta" 
+            style={{ 
+              width: "105px", 
+              height: "auto", 
+              borderRadius: "12px", 
+              boxShadow: "0 3px 8px rgba(0,0,0,0.15)",
+              display: "block"
+            }} 
+          />
+        </div>
+      )}
 
       {items && (
         <ul className="gift-list" style={{ 
           listStyle: "none", 
           padding: 0, 
-          marginTop: "20px", 
           width: "100%", 
           maxWidth: "300px", 
-          margin: "20px auto 0 auto" 
+          margin: "10px auto 0 auto" 
         }}>
           {items.map((item, i) => (
             <li key={i} style={{ 
@@ -408,43 +445,19 @@ function InfoCard({ title, main, text, items }) {
               gridTemplateColumns: "55px 1fr", 
               alignItems: "center",
               gap: "10px", 
-              marginBottom: "16px",
+              marginBottom: "12px",
               backgroundColor: "rgba(244, 241, 234, 0.6)", 
               padding: "12px 14px",
               borderRadius: "12px",
               border: "1px solid rgba(212, 175, 55, 0.2)",
             }}>
-              <span style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center",
-                fontSize: "2.2rem", 
-              }}>
+              <span style={{ display: "flex", alignItems: "center", justifyContext: "center", fontSize: "2.2rem" }}>
                 {item.icon}
               </span>
-              
-              <div style={{ 
-                fontSize: "1rem", 
-                display: "flex", 
-                flexDirection: "column", 
-                alignItems: "flex-start", 
-                gap: "2px",
-                textAlign: "left" 
-              }}>
+              <div style={{ fontSize: "1rem", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "2px", textAlign: "left" }}>
                 <span style={{ fontWeight: "600", color: "#333", lineHeight: "1" }}>{item.label}</span>
                 {item.isLink ? (
-                  <a 
-                    href={item.value} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ 
-                      color: "#9b722f", 
-                      textDecoration: "underline", 
-                      fontWeight: "bold",
-                      fontSize: "0.85rem" ,
-                      marginLeft: "62px"   
-                    }}
-                  >
+                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem" }}>
                     Ir a la mesa
                   </a>
                 ) : (
@@ -471,7 +484,6 @@ function FloatingPetals() {
   );
 }
 
-// ... El resto de componentes (Reveal, RoseSeal, PetalExplosion) se mantienen igual
 function Reveal({ children }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
