@@ -34,7 +34,7 @@ const CONFIG = {
   mensajeWhatsApp:
     "Hola, por este medio confirmo mi asistencia al evento.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
 
-  musica: "/musica.mp3",
+  musica: "/musica.mp3", // Corrección de ruta estática para producción
 
   galeria: [
     "/galeria-1.jpg",
@@ -225,9 +225,9 @@ function App() {
             <section className="section message-section">
               <h2 style={{ 
                 fontFamily: "'Brush Script MT', 'Great Vibes', 'Dancing Script', 'Lucida Handwriting', cursive", 
-                fontSize: "3.4rem",    // Se aumenta el tamaño porque la letra cursiva suele verse más delgada
+                fontSize: "3.4rem",    
                 fontWeight: "normal", 
-                textTransform: "none", // Evita que tu CSS global la transforme a mayúsculas
+                textTransform: "none", 
                 letterSpacing: "0",
                 lineHeight: "1.2"
               }}>
@@ -242,7 +242,6 @@ function App() {
           </Reveal>
 
           <Reveal>
-            {/* CORRECCIÓN: Padding inferior controlado para equilibrar el espacio antes de la siguiente sección */}
             <section className="section cards-grid" style={{ paddingBottom: "40px" }}>
               <InfoCard
                 title="Ceremonia religiosa"
@@ -274,7 +273,8 @@ function App() {
                   {
                     label: "Palacio de Hierro",
                     value: CONFIG.mesaHierro,
-                    icon: <img src="/public/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />,
+                    /* 👇 CORRECCIÓN: Se quitó /public de la ruta de la imagen */
+                    icon: <img src="/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />,
                     isLink: true,
                   }
                 ]}
@@ -284,13 +284,13 @@ function App() {
                 title="Código de vestimenta"
                 main={CONFIG.codigoVestimenta}
                 text={CONFIG.vestimentaDetalle}
-                image="/public/silueta.jpg"
+                /* 👇 CORRECCIÓN: Se quitó /public de la ruta de la imagen */
+                image="/silueta.jpg"
               />
             </section>
           </Reveal>
 
           <Reveal>
-            {/* CORRECCIÓN: Padding superior controlado para que respire simétricamente de forma externa */}
             <section className="section dress-section" style={{ paddingTop: "40px" }}>
               <p className="section-label">Colores reservados</p>
               <h2>Paleta del evento</h2>
@@ -451,7 +451,8 @@ function InfoCard({ title, main, text, items, image }) {
               borderRadius: "12px",
               border: "1px solid rgba(212, 175, 55, 0.2)",
             }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContext: "center", fontSize: "2.2rem" }}>
+              {/* 👇 CORRECCIÓN: Se arregló "justifyContext" a "justifyContent" */}
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.2rem" }}>
                 {item.icon}
               </span>
               <div style={{ fontSize: "1rem", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "2px", textAlign: "left" }}>
@@ -548,6 +549,7 @@ function RoseSeal() {
           className="rose-petal petal-three"
           d="M115 83C133 91 137 112 122 124C107 136 91 123 96 106C110 108 119 99 115 83Z"
         />
+        <circle cx="90" cy="86" r="12" fill="url(#goldRose)" />
         <path
           className="rose-center"
           d="M90 72C77 75 75 91 87 98C100 106 111 92 103 81C100 76 96 73 90 72Z"
