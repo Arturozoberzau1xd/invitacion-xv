@@ -14,15 +14,19 @@ const CONFIG = {
     minute: 0,    
   },
 
-  ceremoniaHora: "16:00 hrs",
+  ceremoniaHora: "16:30 hrs",
   ceremoniaLugar: "Misa en la capilla del jardín del salón",
 
   recepcionHora: "6:00 PM a 1:00 AM",
-  recepcionLugar: '"Salon Veravia" en Pachuca de Soto',
+  recepcionLugar: '"Salon Veravia" Pachuca de Soto, Hgo',
 
   coloresReservados: "Champagne, plateado y dorado",
+  /* 👇 CORRECCIÓN: Comentarios de vestimenta aplicados */
   codigoVestimenta: "Formal",
-  vestimentaDetalle: "Caballeros: traje · Damas: vestido largo",
+vestimentaDetalle: [
+    "Damas: Vestido largo",
+    "Caballeros: Traje"
+  ],
 
   mesaLiverpool: "52001538",
   mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
@@ -34,7 +38,7 @@ const CONFIG = {
   mensajeWhatsApp:
     "Hola, por este medio confirmo mi asistencia al evento.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
 
-  musica: "/musica.mp3", // Corrección de ruta estática para producción
+  musica: "/musica.mp3", 
 
   galeria: [
     "/galeria-1.jpg",
@@ -234,7 +238,7 @@ function App() {
                 Un momento especial
               </h2>
               <p>
-                Hay momentos que se guardan para siempre en el corazón; Por ello,
+                Hay momentos que se guardan para siempre en el corazón; por ello,
                 queremos compartir contigo esta celebración llena de amor,
                 alegría y elegancia.
               </p>
@@ -273,7 +277,6 @@ function App() {
                   {
                     label: "Palacio de Hierro",
                     value: CONFIG.mesaHierro,
-                    /* 👇 CORRECCIÓN: Se quitó /public de la ruta de la imagen */
                     icon: <img src="/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />,
                     isLink: true,
                   }
@@ -284,7 +287,6 @@ function App() {
                 title="Código de vestimenta"
                 main={CONFIG.codigoVestimenta}
                 text={CONFIG.vestimentaDetalle}
-                /* 👇 CORRECCIÓN: Se quitó /public de la ruta de la imagen */
                 image="/silueta.jpg"
               />
             </section>
@@ -405,10 +407,45 @@ function InfoCard({ title, main, text, items, image }) {
         boxSizing: "border-box"
       }}
     >
-      <p className="card-title-label" style={{ textAlign: "center", margin: "0 0 8px 0" }}>{title}</p>
+      {/* Título de la card en estilo manuscrita/cursiva */}
+      <p 
+        className="card-title-label" 
+        style={{ 
+          textAlign: "center", 
+          margin: "0 0 12px 0",
+          fontFamily: "'Brush Script MT', 'Great Vibes', 'Dancing Script', 'Lucida Handwriting', cursive",
+          fontSize: "2.5rem", 
+          fontWeight: "normal",
+          textTransform: "none",
+          letterSpacing: "0",
+          lineHeight: "1"
+        }}
+      >
+        {title}
+      </p>
 
       {main && <h3 style={{ textAlign: "center", margin: "0 0 6px 0", fontSize: "1.8rem" }}>{main}</h3>}
-      {text && <span style={{ textAlign: "center", display: "block", margin: "0 0 10px 0", fontSize: "0.95rem" }}>{text}</span>}
+      
+      {/* Mapeo inteligente para soportar texto normal o arreglos con saltos de línea */}
+      {text && (
+        <span style={{ textAlign: "center", display: "block", margin: "0 0 10px 0", fontSize: "0.95rem", width: "100%" }}>
+          {Array.isArray(text) ? (
+            text.map((linea, index) => (
+              <span 
+                key={index} 
+                style={{ 
+                  display: "block", 
+                  marginBottom: index < text.length - 1 ? "4px" : "0" 
+                }}
+              >
+                {linea}
+              </span>
+            ))
+          ) : (
+            text
+          )}
+        </span>
+      )}
 
       {image && (
         <div style={{ 
@@ -451,16 +488,27 @@ function InfoCard({ title, main, text, items, image }) {
               borderRadius: "12px",
               border: "1px solid rgba(212, 175, 55, 0.2)",
             }}>
-              {/* 👇 CORRECCIÓN: Se arregló "justifyContext" a "justifyContent" */}
               <span style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.2rem" }}>
                 {item.icon}
               </span>
               <div style={{ fontSize: "1rem", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "2px", textAlign: "left" }}>
                 <span style={{ fontWeight: "600", color: "#333", lineHeight: "1" }}>{item.label}</span>
                 {item.isLink ? (
-                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem", paddingLeft: "58px" }}>
-                    Ir a la mesa
-                  </a>
+                  <a
+  href={item.value}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    color: "#9b722f",
+    textDecoration: "underline",
+    fontWeight: "bold",
+    fontSize: "0.85rem",
+    paddingLeft: 65 // 👈 ahora sí funciona
+  }}
+>
+  Ir a la mesa
+</a>
+
                 ) : (
                   <span style={{ color: "#666", fontSize: "0.9rem" }}>No. {item.value}</span>
                 )}
