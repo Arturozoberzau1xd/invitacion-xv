@@ -351,7 +351,7 @@ function InfoCard({ title, main, text, items, image }) {
               <div style={{ fontSize: "1rem", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "2px", textAlign: "left" }}>
                 <span style={{ fontWeight: "600", color: "#333", lineHeight: "1.2" }}>{item.label}</span>
                 {item.isLink ? (
-                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem", marginTop: "2px" }}>
+                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem", marginTop: "2px", paddingLeft: "65px" }}>
                     Ir a la mesa
                   </a>
                 ) : (
