@@ -272,9 +272,9 @@ function App() {
 
           <Reveal>
             <section className="section confirm-section">
-              <p className="section-label">Confirmation</p>
+              <p className="section-label">Confirmación</p>
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Confirma tu asistencia</h2>
-              <p>Agradeceremos la confirmation de su asistencia por WhatsApp para tener todo preparado con mucho cariño.</p>
+              <p>Agradeceremos la confirmación de su asistencia por WhatsApp para tener todo preparado con mucho cariño.</p>
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="whatsapp-button">Confirmar por WhatsApp</a>
             </section>
           </Reveal>
