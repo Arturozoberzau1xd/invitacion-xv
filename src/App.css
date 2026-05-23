@@ -1373,7 +1373,7 @@ h3 {
   }
 
   .footer p {
-    font-size: clamp(2rem, 12vw, 3.2rem);
+    font-size: clamp(3rem, 11vw, 6rem);
   }
 
   .burst-petal {
