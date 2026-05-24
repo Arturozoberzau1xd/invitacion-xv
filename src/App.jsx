@@ -23,6 +23,16 @@ const CONFIG = {
     "Caballeros: Traje"
   ],
 
+  /* Configuración de Padres y Padrinos */
+  padres: [
+    "Zivec Nelly Benítez Tavera",
+    "Iván Urbina Hernández"
+  ],
+  padrinos: [
+    "María de los Ángeles Eguiluz Tapia",
+    "Juan Manuel Batres Campos"
+  ],
+
   mesaLiverpool: "52001538",
   mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
   mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
@@ -43,7 +53,6 @@ const CONFIG = {
   ],
 };
 
-// Estilo de fuente cursiva reutilizable para las secciones nativas
 const CURSIVE_STYLE = {
   fontFamily: "'Brush Script MT', 'Great Vibes', 'Dancing Script', 'Lucida Handwriting', cursive",
   fontWeight: "normal",
@@ -185,7 +194,6 @@ function App() {
 
           <Reveal>
             <section className="section countdown-section">
-              {/* CORRECCIÓN: Título de cuenta regresiva en cursiva */}
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Cuenta regresiva</h2>
               <p className="event-date-display" style={{ 
                 fontFamily: "'Cormorant Garamond', serif", 
@@ -207,6 +215,20 @@ function App() {
             </section>
           </Reveal>
 
+          {/* 👇 SECCIÓN DE PADRES Y PADRINOS CORREGIDA: Envuelta en Reveal y con estructura css limpia */}
+          <Reveal>
+            <section className="section family-section cards-grid" style={{ paddingBottom: "20px" }}>
+              <InfoCard 
+                title="Mis Padres" 
+                text={CONFIG.padres} 
+              />
+              <InfoCard 
+                title="Mis Padrinos" 
+                text={CONFIG.padrinos} 
+              />
+            </section>
+          </Reveal>
+
           <Reveal>  
             <section className="section message-section">
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Un momento especial</h2>
@@ -221,11 +243,13 @@ function App() {
             <section className="section cards-grid" style={{ paddingBottom: "40px" }}>
               <InfoCard title="Ceremonia religiosa" main={CONFIG.ceremoniaHora} text={<>Misa en la capilla del <br /> jardín del salón</>} />
               <InfoCard title="Recepción" main={CONFIG.recepcionHora} text={<>"Salon Veravia" <br /> Pachuca de Soto, Hgo</>} />
+
               <InfoCard title="Mesa de regalos" items={[
                 { label: "Liverpool", value: CONFIG.mesaLiverpool, icon: <FaGift style={{ color: "#e6007e" }} />, isLink: false },
                 { label: "Amazon", value: CONFIG.mesaAmazon, icon: <FaAmazon style={{ color: "#ff9900" }} />, isLink: true },
                 { label: "Palacio de Hierro", value: CONFIG.mesaHierro, icon: <img src="/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />, isLink: true }
               ]} />
+              
               <InfoCard title="Código de vestimenta" main={CONFIG.codigoVestimenta} text={CONFIG.vestimentaDetalle} image="/silueta.jpg" />
             </section>
           </Reveal>
@@ -233,7 +257,6 @@ function App() {
           <Reveal>
             <section className="section dress-section" style={{ paddingTop: "40px" }}>
               <p className="section-label">Colores reservados</p>
-              {/* CORRECCIÓN: Título de paleta de evento en cursiva */}
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem", margin: "0 0 10px 0" }}>Paleta del evento</h2>
               <p>Se reservan los tonos champagne, dorado y plateado para detalles especiales del evento.</p>
               <div className="color-palette">
@@ -244,22 +267,21 @@ function App() {
             </section>
           </Reveal>
 
-          {/* REVESTIMIENTO DE GALERÍA, UBICACIÓN Y CONFIRMACIÓN CON SUS TÍTULOS ELEGANTES */}
           <Reveal>
-  <section className="section gallery-section">
-    <p className="section-label">Detalles</p>
-    <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Galería</h2>
-    <div className="gallery-grid">
-      {CONFIG.galeria.map((imagen) => (
-        <div 
-          className="gallery-item" 
-          key={imagen} 
-          style={{ backgroundImage: `url(${imagen})` }}
-        />
-      ))}
-    </div>
-  </section>
-</Reveal>
+            <section className="section gallery-section">
+              <p className="section-label">Detalles</p>
+              <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Galería</h2>
+              <div className="gallery-grid">
+                {CONFIG.galeria.map((imagen) => (
+                  <div 
+                    className="gallery-item" 
+                    key={imagen} 
+                    style={{ backgroundImage: `url(${imagen})` }}
+                  />
+                ))}
+              </div>
+            </section>
+          </Reveal>
 
           <Reveal>
             <section className="section location-section">
@@ -273,7 +295,7 @@ function App() {
           <Reveal>
             <section className="section confirm-section">
               <p className="section-label">Confirmación</p>
-              <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Confirma tu asistencia</h2>
+              <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Confirme su asistencia</h2>
               <p>Agradeceremos la confirmación de su asistencia por WhatsApp para tener todo preparado con mucho cariño.</p>
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="whatsapp-button">Confirmar por WhatsApp</a>
             </section>
@@ -297,7 +319,6 @@ function TimeBox({ value, label }) {
   );
 }
 
-// InfoCard pulido con los estilos cursivos unificados
 function InfoCard({ title, main, text, items, image }) {
   return (
     <article className="info-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "24px 20px", boxSizing: "border-box" }}>
@@ -312,10 +333,10 @@ function InfoCard({ title, main, text, items, image }) {
       )}
       
       {text && (
-        <span style={{ textAlign: "center", display: "block", margin: "0 0 10px 0", fontSize: "0.95rem", width: "100%" }}>
+        <span style={{ textAlign: "center", display: "block", margin: "0 0 10px 0", fontSize: "1.05rem", width: "100%", color: "#4a3b2c", lineHeight: "1.4" }}>
           {Array.isArray(text) ? (
             text.map((linea, index) => (
-              <span key={index} style={{ display: "block", marginBottom: index < text.length - 1 ? "4px" : "0" }}>
+              <span key={index} style={{ display: "block", marginBottom: index < text.length - 1 ? "8px" : "0" }}>
                 {linea}
               </span>
             ))
@@ -351,7 +372,7 @@ function InfoCard({ title, main, text, items, image }) {
               <div style={{ fontSize: "1rem", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "2px", textAlign: "left" }}>
                 <span style={{ fontWeight: "600", color: "#333", lineHeight: "1.2" }}>{item.label}</span>
                 {item.isLink ? (
-                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem", marginTop: "2px", paddingLeft: "65px" }}>
+                  <a href={item.value} target="_blank" rel="noopener noreferrer" style={{ color: "#9b722f", textDecoration: "underline", fontWeight: "bold", fontSize: "0.85rem", marginTop: "2px", paddingLeft: "0" }}>
                     Ir a la mesa
                   </a>
                 ) : (
