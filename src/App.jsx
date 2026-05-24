@@ -41,7 +41,7 @@ const CONFIG = {
   whatsappNumero: "527712168812",
 
   mensajeWhatsApp:
-    "Hola, por este medio confirmo mi asistencia al evento.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
+    "Hola, por este medio confirmo mi asistencia a los XV de Zury. \n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
 
   musica: "/musica.mp3", 
 
