@@ -3,7 +3,7 @@ import "./App.css";
 import { FaAmazon, FaGift } from "react-icons/fa";
 
 const CONFIG = {
-  nombrePrincipal: "XV Años de Zury Urbina Benitez ", 
+  nombrePrincipal: "XV Años de Zury Urbina Benitez", 
   subtitulo: "Una celebración inolvidable",
 
   fechaEvento: {
@@ -41,7 +41,7 @@ const CONFIG = {
   whatsappNumero: "527712168812",
 
   mensajeWhatsApp:
-    "Hola, por este medio confirmo mi asistencia a los XV de Zury. \n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
+    "Hola, por este medio confirmo mi asistencia a los XV de Zury.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
 
   musica: "/musica.mp3", 
 
@@ -172,6 +172,9 @@ function App() {
               <RoseSeal />
             </div>
 
+            {/* 👇 "Mis XV" cursive title (enlarged and restyled for prominence) */}
+            
+
             <h1>{CONFIG.nombrePrincipal}</h1>
             <p className="subtitle">{CONFIG.subtitulo}</p>
             <div className="line"></div>
@@ -215,7 +218,6 @@ function App() {
             </section>
           </Reveal>
 
-          {/* 👇 SECCIÓN DE PADRES Y PADRINOS CORREGIDA: Envuelta en Reveal y con estructura css limpia */}
           <Reveal>
             <section className="section family-section cards-grid" style={{ paddingBottom: "20px" }}>
               <InfoCard 
@@ -258,7 +260,7 @@ function App() {
             <section className="section dress-section" style={{ paddingTop: "40px" }}>
               <p className="section-label">Colores reservados</p>
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem", margin: "0 0 10px 0" }}>Paleta del evento</h2>
-              <p>Se reservan los tonos champagne, dorado y plateado para detalles especiales del evento.</p>
+              <p>Evitar los tonos champagne, dorado y plateado; se reservan para detalles especiales del evento.</p>
               <div className="color-palette">
                 <div><span className="color champagne"></span><p>Champagne</p></div>
                 <div><span className="color gold"></span><p>Dorado</p></div>
@@ -422,8 +424,9 @@ function RoseSeal() {
     <div className="rose-seal-premium" aria-label="Logo XV Años Zury">
       <div className="seal-glow-core"></div>
       <div className="seal-glow-flare"></div>
-      <div className="seal-image-frame">
-        <img src="/rosaschampa.jpg" alt="Zury Urbina Benitez" className="rose-seal-image" />
+      {/* 🛑 "seal-image-frame" style is updated to hide the border */}
+      <div className="seal-image-frame" style={{ border: 'none', boxShadow: 'none' }}>
+        <img src="/rosaschampa.jpg" alt="Zury Urbina Benitez" className="rose-seal-image" style={{ border: 'none', boxShadow: 'none' }} />
         <div className="seal-shimmer"></div>
       </div>
     </div>

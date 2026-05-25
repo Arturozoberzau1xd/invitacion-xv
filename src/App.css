@@ -1472,12 +1472,13 @@ h3 {
 /* Cuerpo del Sello Premium */
 .rose-seal-premium {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 190px;
+  height: 100px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 /* Marco elegante para la imagen (Doble anillo de oro) */
