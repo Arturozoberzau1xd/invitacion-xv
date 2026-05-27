@@ -33,7 +33,7 @@ const CONFIG = {
     "Juan Manuel Batres Campos"
   ],
 
-  mesaLiverpool: "52001538",
+  mesaLiverpool: "https://mesaderegalos.liverpool.com.mx/milistaderegalos/52001538",
   mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
   mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
 
@@ -246,11 +246,36 @@ function App() {
               <InfoCard title="Ceremonia religiosa" main={CONFIG.ceremoniaHora} text={<>Misa en la capilla del <br /> jardín del salón</>} />
               <InfoCard title="Recepción" main={CONFIG.recepcionHora} text={<>"Salon Veravia" <br /> Pachuca de Soto, Hgo</>} />
 
-              <InfoCard title="Mesa de regalos" items={[
-                { label: "Liverpool", value: CONFIG.mesaLiverpool, icon: <FaGift style={{ color: "#e6007e" }} />, isLink: false },
-                { label: "Amazon", value: CONFIG.mesaAmazon, icon: <FaAmazon style={{ color: "#ff9900" }} />, isLink: true },
-                { label: "Palacio de Hierro", value: CONFIG.mesaHierro, icon: <img src="/ph.jpg" alt="Palacio de Hierro" style={{ width: "24px", height: "24px" }} />, isLink: true }
-              ]} />
+              <InfoCard
+  title="Mesa de regalos"
+  items={[
+    {
+      label: "Liverpool",
+      value: CONFIG.mesaLiverpool,
+      icon: <FaGift style={{ color: "#e6007e" }} />,
+      isLink: true, // ✅ ponlo en true para que se muestre como enlace
+    },
+    {
+      label: "Amazon",
+      value: CONFIG.mesaAmazon,
+      icon: <FaAmazon style={{ color: "#ff9900" }} />,
+      isLink: true,
+    },
+    {
+      label: "Palacio de Hierro",
+      value: CONFIG.mesaHierro,
+      icon: (
+        <img
+          src="/ph.jpg"
+          alt="Palacio de Hierro"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      isLink: true,
+    },
+  ]}
+/>
+
               
               <InfoCard title="Código de vestimenta" main={CONFIG.codigoVestimenta} text={CONFIG.vestimentaDetalle} image="/silueta.jpg" />
             </section>
@@ -304,8 +329,8 @@ function App() {
           </Reveal>
 
           <footer className="footer footer-circle-text">
-  <p>Gracias por ser parte de este momento tan especial.</p>
-</footer>
+            <p>Gracias por ser parte de este momento tan especial.</p>
+          </footer>
         </section>
       )}
     </main>
