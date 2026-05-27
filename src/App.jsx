@@ -38,7 +38,7 @@ const CONFIG = {
   mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
 
   googleMapsUrl: "https://maps.app.goo.gl/dZLQFZMEBWcAn8mK7?g_st=ac",
-  whatsappNumero: "527712168812",
+  whatsappNumero: "527711104357",
 
   mensajeWhatsApp:
     "Hola, por este medio confirmo mi asistencia a los XV de Zury.\n\nNombre:\nNúmero de personas:\nNombre de familia:\nGracias.",
@@ -303,9 +303,9 @@ function App() {
             </section>
           </Reveal>
 
-          <footer className="footer">
-            <p>Gracias por ser parte de este momento tan especial.</p>
-          </footer>
+          <footer className="footer footer-circle-text">
+  <p>Gracias por ser parte de este momento tan especial.</p>
+</footer>
         </section>
       )}
     </main>
