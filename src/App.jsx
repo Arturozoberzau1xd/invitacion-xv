@@ -35,7 +35,7 @@ const CONFIG = {
 
   mesaLiverpool: "https://mesaderegalos.liverpool.com.mx/milistaderegalos/52001538",
   mesaAmazon: "https://www.amazon.com.mx/registries/gl/guest-view/UHVCJY8JA5M6?ref_=cm_sw_r_cp_ud_ggr-subnajv-share_YY4MNYPR7ZQCT468K9EE",
-  mesaHierro: "https://www.elpalaciodehierro.com/celebra#/event/5000158",
+  mesaHierro: "https://www.elpalaciodehierro.com/listaregalos#/event/5000158",
 
   googleMapsUrl: "https://maps.app.goo.gl/dZLQFZMEBWcAn8mK7?g_st=ac",
   whatsappNumero: "527711104357",
