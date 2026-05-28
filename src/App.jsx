@@ -236,7 +236,7 @@ function App() {
               <h2 style={{ ...CURSIVE_STYLE, fontSize: "3.4rem" }}>Un momento especial</h2>
               <p>
                 Hay momentos que se guardan para siempre en el corazón; por ello,
-                queremos compartir contigo esta celebración llena de amor, alegría y elegancia.
+                queremos compartir contigo esta celebración llena de amor y alegría.
               </p>
             </section>
           </Reveal>
