@@ -3,7 +3,7 @@ import "./App.css";
 import { FaAmazon, FaGift } from "react-icons/fa";
 
 const CONFIG = {
-  nombrePrincipal: "XV Años de Zury Urbina Benitez", 
+  nombrePrincipal: "XV Años de Zury Urbina Benítez", 
   subtitulo: "Una celebración inolvidable",
 
   fechaEvento: {
@@ -178,7 +178,7 @@ function App() {
             <h1>{CONFIG.nombrePrincipal}</h1>
             <p className="subtitle">{CONFIG.subtitulo}</p>
             <div className="line"></div>
-            <p className="small-text">Zury Urbina Benitez</p>
+            <p className="small-text">Zury Urbina Benítez</p>
 
             <button className="main-button open-button" onClick={abrirInvitacion} disabled={animacionApertura}>
               {animacionApertura ? "Abriendo..." : "Abrir invitación"}
@@ -451,7 +451,7 @@ function RoseSeal() {
       <div className="seal-glow-flare"></div>
       {/* 🛑 "seal-image-frame" style is updated to hide the border */}
       <div className="seal-image-frame" style={{ border: 'none', boxShadow: 'none' }}>
-        <img src="/rosaschampa.jpg" alt="Zury Urbina Benitez" className="rose-seal-image" style={{ border: 'none', boxShadow: 'none' }} />
+        <img src="/rosaschampa.jpg" alt="Zury Urbina Benítez" className="rose-seal-image" style={{ border: 'none', boxShadow: 'none' }} />
         <div className="seal-shimmer"></div>
       </div>
     </div>
